@@ -75,9 +75,10 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    # Your stuff: custom apps go here
     "e_commerce_store.users",
     "e_commerce_store.store",
-    # Your stuff: custom apps go here
+    "e_commerce_store.cart",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -300,3 +301,4 @@ STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+CART_SESSION_ID = "cart"

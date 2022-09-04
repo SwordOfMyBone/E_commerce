@@ -15,9 +15,16 @@ urlpatterns = [
     # User management
     path("users/", include("e_commerce_store.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
+    path(
+        "cart/",
+        include("e_commerce_store.cart.urls", namespace="cart"),
+        name="cart_add",
+    ),
     path("", include("e_commerce_store.store.urls", namespace="store"), name="home"),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development
     urlpatterns += staticfiles_urlpatterns()

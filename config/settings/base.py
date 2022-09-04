@@ -75,10 +75,11 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    # Your stuff: custom apps go here
+    # custom apps go here
     "e_commerce_store.users",
     "e_commerce_store.store",
     "e_commerce_store.cart",
+    "e_commerce_store.orders",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -182,6 +183,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "e_commerce_store.users.context_processors.allauth_settings",
+                "e_commerce_store.cart.context_processors.cart",
             ],
         },
     }

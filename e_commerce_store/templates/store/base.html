@@ -131,25 +131,37 @@
                         ></button>
                     </div>
                 {% endfor %} {% endif %}
-                    <div id="subheader">
-                        <div class="cart">Your cart is empty.</div>
+                <div id="subheader">
+                    <div class="cart">
+                        {% with total_items=cart|length %}
+                            {% if total_items > 0 %}
+                                Your cart:
+                                <a href="{% url "cart:cart_detail" %}">
+                                    {{ total_items }} item{{ total_items|pluralize }},
+                                    ${{ cart.get_total_price }}
+                                </a>
+                            {% else %}
+                                Your cart is empty.
+                            {% endif %}
+                        {% endwith %}
                     </div>
-                    <div id="content">{% block content %} Content here </div>
+                </div>
+                <div id="content">{% block content %} Content here </div>
                 {% endblock content %}
-            </div>
-            <!-- /container -->
-        </body>
-    </html>
-    {% block modal %}{% endblock modal %}
+                </div>
+                <!-- /container -->
+            </body>
+        </html>
+        {% block modal %}{% endblock modal %}
 
-    {% block inline_javascript %}
-        {% comment %}
+        {% block inline_javascript %}
+            {% comment %}
     Script tags with only code, no src (defer by default). To run
     with a "defer" so that you run inline code:
     <script>
       window.addEventListener('DOMContentLoaded', () => {/* Run whatever you want */});
     </script>
     {% endcomment %}
-    {% endblock inline_javascript %}
-</body>
+        {% endblock inline_javascript %}
+    </body>
 </html>

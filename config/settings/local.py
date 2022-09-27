@@ -66,3 +66,8 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 CELERY_TASK_EAGER_PROPAGATES = True
 # Your stuff...
 # ------------------------------------------------------------------------------
+# Stripe keys
+STRIPE_TEST_PUBLISHABLE_KEY = env("STRIPE_TEST_PUBLISHABLE_KEY")
+STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY")
+STRIPE_API_VERSION = env("STRIPE_API_VERSION")
+STRIPE_WEBHOOK_SECRET = env("STRIPE_WEBHOOK_SECRET")

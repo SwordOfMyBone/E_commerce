@@ -64,6 +64,15 @@ services:
     image: redis:6
     container_name: e_commerce_store_local_redis
 
+  stripe-cli:
+    image: stripe/stripe-cli
+    container_name: e_commerce_store_local_stripe_cli
+    platform: linux/x86_64
+    command: listen --forward-to localhost:8000/payment/webhook/ --api-key ${STRIPE_API_KEY} --device-name ${STRIPE_DEVICE_NAME}
+    environment:
+      - STRIPE_API_KEY=${STRIPE_API_KEY}
+      - STRIPE_DEVICE_NAME=${STRIPE_DEVICE_NAME}
+
   celeryworker:
     <<: *django
     image: e_commerce_store_local_celeryworker

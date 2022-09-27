@@ -72,6 +72,7 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "django_celery_beat",
+    "stripe",
 ]
 
 LOCAL_APPS = [
@@ -80,6 +81,7 @@ LOCAL_APPS = [
     "e_commerce_store.store",
     "e_commerce_store.cart",
     "e_commerce_store.orders",
+    "e_commerce_store.payment",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

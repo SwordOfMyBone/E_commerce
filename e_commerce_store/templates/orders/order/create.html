@@ -1,4 +1,4 @@
-{% extends "store/base.html" %}
+{% extends "base.html" %}
 {% block title %}
   Checkout
 {% endblock %}
@@ -16,9 +16,9 @@
     </ul>
     <p>Total: ${{ cart.get_total_price }}</p>
   </div>
-  <form method="post" class="order-form">
+  <form method="post" class="order-form mw-full">
     {{ form.as_p }}
-    <p><input type="submit" value="Place order"></p>
+    <p><input type="submit" value="Place order" class="btn"></p>
     {% csrf_token %}
   </form>
 {% endblock %}

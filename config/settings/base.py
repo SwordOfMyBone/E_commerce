@@ -306,3 +306,8 @@ STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
 # Your stuff...
 # ------------------------------------------------------------------------------
 CART_SESSION_ID = "cart"
+# Stripe keys
+STRIPE_TEST_PUBLISHABLE_KEY = env("STRIPE_TEST_PUBLISHABLE_KEY")
+STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY")
+STRIPE_API_VERSION = env("STRIPE_API_VERSION")
+STRIPE_WEBHOOK_SECRET = env("STRIPE_WEBHOOK_SECRET")

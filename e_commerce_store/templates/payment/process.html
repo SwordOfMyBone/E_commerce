@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Pay your order{% endblock %}
+{% block title %}Pay for your order{% endblock %}
 {% block content %}
   <h1>Order summary</h1>
   <table class="cart">
@@ -18,7 +18,7 @@
         <tr class="row{% cycle "1" "2" %}">
           <td>
             <img src="{% if item.product.image %}{{ item.product.image.url }}
-            {% else %}{% static "img/no_image.png" %}{% endif %}">
+            {% else %}{% static "img/no_image.png" %}{% endif %}" class="img-fluid h-200">
           </td>
           <td>{{ item.product.name }}</td>
           <td class="num">${{ item.price }}</td>

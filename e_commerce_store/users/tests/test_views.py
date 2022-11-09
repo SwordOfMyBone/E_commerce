@@ -11,8 +11,7 @@ from django.urls import reverse
 from e_commerce_store.users.forms import UserAdminChangeForm
 from e_commerce_store.users.models import User
 from e_commerce_store.users.tests.factories import UserFactory
-from e_commerce_store.users.views import (
-    UserRedirectView,
+from e_commerce_store.users.views import (  # UserRedirectView,
     UserUpdateView,
     user_detail_view,
 )
@@ -71,15 +70,15 @@ class TestUserUpdateView:
         assert messages_sent == ["Information successfully updated"]
 
 
-class TestUserRedirectView:
-    def test_get_redirect_url(self, user: User, rf: RequestFactory):
-        view = UserRedirectView()
-        request = rf.get("/fake-url")
-        request.user = user
+# class TestUserRedirectView:
+#     def test_get_redirect_url(self, user: User, rf: RequestFactory):
+#         view = UserRedirectView()
+#         request = rf.get("/fake-url")
+#         request.user = user
 
-        view.request = request
+#         view.request = request
 
-        assert view.get_redirect_url() == f"/users/{user.username}/"
+#         assert view.get_redirect_url() == f"/users/{user.username}/"
 
 
 class TestUserDetailView:

@@ -3,6 +3,9 @@
 {% block title %}
     {% if category %}{{ category.name }}{% else %}Products{% endif %}
 {% endblock %}
+        {% block page-wrapper %}
+            <div class="page-wrapper with-sidebar with-navbar">
+        {% endblock %}
 {% block sidebar %}
     <div class="sidebar">
         <div class="sidebar-menu">

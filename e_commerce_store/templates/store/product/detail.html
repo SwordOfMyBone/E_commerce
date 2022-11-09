@@ -5,30 +5,31 @@
 {% endblock %}
 {% block content %}
     <div class="content">
-        <div class="row text-left row-eq-spacing"> <h1 class="text-capitalize  font-weight-bold ">{{ product.name }}</h1> </div>
-        <div class="row">
+        <div class="row-12"> <h1 class="text-capitalize text-center font-weight-bold ">{{ product.name }}</h1> </div>
+        <div class="row align-items-center">
             <div class="col">
                 <div class="w-400 mw-full">
                     <img src="{% if product.image %}{{ product.image.url }}{% else %}
-                        {% static "img/no_image.png" %}{% endif %}" class="mw-full img-fluid ">
+                        {% static "img/no_image.png" %}{% endif %}" class="mw-full img-fluid shadow-lg rounded">
                 </div>
             </div>
-            <div class="w-400 mw-full">
+            <div class="w-600 mw-full">
                 <div class="col">
-                    <div class="card">
-                        <h2>
-                            <a href="{{ product.category.get_absolute_url }}" class="card-title text-light-dm text-capitalize">
+                    <div class="card shadow-lg">
+                        <h2 class="card-title text-light-dm text-capitalize font-weight-bold">
+                            {{product.name}} -
+                            <a href="{{ product.category.get_absolute_url }}" class="text-light-dm">
                                 {{ product.category }}
                             </a>
                         </h2>
+                        <p class="text-justify text-muted"
                         {{ product.description|linebreaks }}
-                        <p class="">${{ product.price }}</p>
-                        <form action="{% url "cart:cart_add" product.id %}" method="post">
+                        <p class="font-weight-bold" style="display:inline">Price: </p>
+                        ${{ product.price }}
+                        <form action="{% url "cart:cart_add" product.id %}" method="post" class="form-group mt-20">
                             {{ cart_product_form }}
                             {% csrf_token %}
-                            <div class="text-right"> <!-- text-right = text-align: right -->
-                                <input type="submit" value="Add to cart" class="btn btn-primary ">
-                            </div>
+                            <input type="submit" value="Add to cart" class="btn btn-primary btn-block mt-10">
                         </form>
                     </div>
                 </div>

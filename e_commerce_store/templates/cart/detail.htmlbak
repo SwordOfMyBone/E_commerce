@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}
+    Your shopping cart
+{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+    <h1>Your shopping cart</h1>
+
+    <div class="w-three-quarter">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th></th>
+                <th>Quantity</th>
+                <th>Unit price</th>
+                <th class="text-right">Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+                {% with product=item.product %}
+                    <tr>
+                        <td class="w-quarter">
+                            <a href="{{ product.get_absolute_url }}">
+                                <img src="{% if product.image %}{{ product.image.url }}
+                                {% else %}{% static "img/no_image.png" %}{% endif %}" class="img-fluid">
+                            </a>
+                        </td>
+                        <td>{{ product.name }}</td>
+                        <td>
+                            <form action="{% url "cart:cart_add" product.id %}" method="post">
+                                {{ item.update_quantity_form.quantity }}
+                                {{ item.update_quantity_form.override }}
+                                <input type="submit" class="btn" value="Update">
+                                {% csrf_token %}
+                            </form>
+                            <form action="{% url "cart:cart_remove" product.id %}" method="post">
+                                <input type="submit" class="btn" value="Remove">
+                                {% csrf_token %}
+                            </form>
+                        </td>
+                        <td class="num">${{ item.price }}</td>
+                        <td class="text-right">${{ item.total_price }}</td>
+                    </tr>
+                {% endwith %}
+            {% endfor %}
+                <class="text-right">Total</td>
+                <!-- <td colspan="4"></td> -->
+                <td class="text-right">${{ cart.get_total_price }}</td>
+        </tbody>
+    </table>
+    </div>
+
+
+        <div class="position-relative left-0">
+        <a href="{% url "store:product_list" %}" class="btn">Continue shopping</a>
+        </div>
+
+        <div class="position-relative right-0">
+        Cart Total: ${{ cart.get_total_price }}
+        <a href="{% url "orders:order_create" %}" class="btn">
+            Checkout
+        </a>
+        </div>
+    </p>
+    </div>
+{% endblock %}
